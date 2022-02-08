@@ -27,6 +27,6 @@
         app:layout_constraintTop_toBottomOf="@id/feed_user_name"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="This is my fisrt message! Just figuring out some things fgfg\n
-        Fuck you!!!"/>
+        adssssdasdasd!!!"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
