@@ -27,9 +27,9 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
 
-    RecyclerView recyclerView; //объявляем RecyclerView
+     //объявляем RecyclerView
     FeedRecyclerViewAdapter adapter; //объявляем adapter
-    LinearLayoutManager layoutManager;//объявляем LinearLayoutManager
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -40,13 +40,13 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+//        final TextView textView = binding.textHome;
+//        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                textView.setText(s);
+//            }
+//        });
         return root;
     }
 
@@ -55,10 +55,9 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         //Init
-        recyclerView = binding.feedRecycler;
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
+        binding.feedRecycler.setHasFixedSize(true);
+
+
         generateItem();
     }
 
@@ -78,6 +77,6 @@ public class HomeFragment extends Fragment {
                             "-valentine-s-day-date-food-concept-1569808198.jpg"));
         }
         adapter = new FeedRecyclerViewAdapter(itemList, getContext());
-        recyclerView.setAdapter(adapter);
+        binding.feedRecycler.setAdapter(adapter);
     }
 }
