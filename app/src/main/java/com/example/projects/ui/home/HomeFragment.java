@@ -47,19 +47,17 @@ public class HomeFragment extends Fragment {
 //                textView.setText(s);
 //            }
 //        });
+
         return root;
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        //Init
-        binding.feedRecycler.setHasFixedSize(true);
-
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         generateItem();
     }
+
 
     @Override
     public void onDestroyView() {
@@ -78,5 +76,6 @@ public class HomeFragment extends Fragment {
         }
         adapter = new FeedRecyclerViewAdapter(itemList, getContext());
         binding.feedRecycler.setAdapter(adapter);
+        binding.feedRecycler.setHasFixedSize(true);
     }
 }
