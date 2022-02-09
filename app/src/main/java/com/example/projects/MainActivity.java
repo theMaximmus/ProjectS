@@ -28,9 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
-    RecyclerView recyclerView; //объявляем RecyclerView
-    FeedRecyclerViewAdapter adapter; //объявляем adapter
-    LinearLayoutManager layoutManager;//объявляем LinearLayoutManager
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +56,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        //Init
-        recyclerView = findViewById(R.id.container);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        generateItem();
+
     }
 
     @Override
@@ -81,17 +73,5 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private void generateItem() {
-        List<FeedItem> itemList = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            itemList.add(new FeedItem(
-                    "Pizza "+i,
-                    "100000$",
-                    "https://image.shutterstock.com/shutterstock/photos/1569808198/display" +
-                            "_1500/stock-photo-heart-pizza-with-mozzarella-and-tomatoes-on-a-slate" +
-                            "-valentine-s-day-date-food-concept-1569808198.jpg"));
-        }
-        adapter = new FeedRecyclerViewAdapter(itemList, this);
-        recyclerView.setAdapter(adapter);
-    }
+
 }

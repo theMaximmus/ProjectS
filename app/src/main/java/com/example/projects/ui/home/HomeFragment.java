@@ -27,6 +27,11 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
 
+    RecyclerView recyclerView; //объявляем RecyclerView
+    FeedRecyclerViewAdapter adapter; //объявляем adapter
+    LinearLayoutManager layoutManager;//объявляем LinearLayoutManager
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -49,7 +54,12 @@ public class HomeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        //Init
+        recyclerView = binding.feedRecycler;
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        generateItem();
     }
 
     @Override
@@ -57,5 +67,17 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
+    private void generateItem() {
+        List<FeedItem> itemList = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            itemList.add(new FeedItem(
+                    "Pizza "+i,
+                    "100000$",
+                    "https://image.shutterstock.com/shutterstock/photos/1569808198/display" +
+                            "_1500/stock-photo-heart-pizza-with-mozzarella-and-tomatoes-on-a-slate" +
+                            "-valentine-s-day-date-food-concept-1569808198.jpg"));
+        }
+        adapter = new FeedRecyclerViewAdapter(itemList, getContext());
+        recyclerView.setAdapter(adapter);
+    }
 }
